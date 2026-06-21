@@ -1,228 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<style>
-  * { box-sizing: border-box; }
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  :root {
-    /* Islands Darcula (default) */
-    --bg: #1f2022;
-    --island: #2b2d30;
-    --island-border: #393b40;
-    --text: #bcbec4;
-    --text-dim: #7a7e85;
-    --accent: #3592c4;
-    --accent-soft: rgba(53, 146, 196, 0.18);
-    --track: #393b40;
-    --thumb: #cfd1d6;
-    --btn: #313438;
-    --btn-hover: #3a3d42;
-    --green: #5fad65;
-  }
+      :root {
+        /* Islands Darcula (default) */
+        --bg: #1f2022;
+        --island: #2b2d30;
+        --island-border: #393b40;
+        --text: #bcbec4;
+        --text-dim: #7a7e85;
+        --accent: #3592c4;
+        --accent-soft: rgba(53, 146, 196, 0.18);
+        --track: #393b40;
+        --thumb: #cfd1d6;
+        --btn: #313438;
+        --btn-hover: #3a3d42;
+        --green: #5fad65;
+      }
 
-  [data-theme="light"] {
-    /* Islands Light */
-    --bg: #edeef0;
-    --island: #ffffff;
-    --island-border: #d9dadd;
-    --text: #27282e;
-    --text-dim: #818594;
-    --accent: #3573f0;
-    --accent-soft: rgba(53, 115, 240, 0.14);
-    --track: #dfe1e5;
-    --thumb: #ffffff;
-    --btn: #f2f3f5;
-    --btn-hover: #e6e8eb;
-    --green: #208a3c;
-  }
+      [data-theme="light"] {
+        /* Islands Light */
+        --bg: #edeef0;
+        --island: #ffffff;
+        --island-border: #d9dadd;
+        --text: #27282e;
+        --text-dim: #818594;
+        --accent: #3573f0;
+        --accent-soft: rgba(53, 115, 240, 0.14);
+        --track: #dfe1e5;
+        --thumb: #ffffff;
+        --btn: #f2f3f5;
+        --btn-hover: #e6e8eb;
+        --green: #208a3c;
+      }
 
-  body {
-    width: 280px;
-    margin: 0;
-    padding: 14px;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.2s ease, color 0.2s ease;
-  }
+      body {
+        width: 280px;
+        margin: 0;
+        padding: 14px;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
 
-  /* The "island" panel */
-  .island {
-    background: var(--island);
-    border: 1px solid var(--island-border);
-    border-radius: 14px;
-    padding: 16px;
-  }
+      /* The "island" panel */
+      .island {
+        background: var(--island);
+        border: 1px solid var(--island-border);
+        border-radius: 14px;
+        padding: 16px;
+      }
 
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-  .title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .title svg { width: 16px; height: 16px; stroke: var(--accent); }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .title svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--accent);
+      }
 
-  /* Theme toggle */
-  .theme-toggle {
-    display: flex;
-    background: var(--track);
-    border-radius: 8px;
-    padding: 2px;
-    gap: 2px;
-  }
-  .theme-toggle button {
-    border: none;
-    background: transparent;
-    color: var(--text-dim);
-    width: 26px;
-    height: 22px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s ease;
-  }
-  .theme-toggle button svg { width: 13px; height: 13px; }
-  .theme-toggle button.active {
-    background: var(--island);
-    color: var(--text);
-  }
+      /* Theme toggle */
+      .theme-toggle {
+        display: flex;
+        background: var(--track);
+        border-radius: 8px;
+        padding: 2px;
+        gap: 2px;
+      }
+      .theme-toggle button {
+        border: none;
+        background: transparent;
+        color: var(--text-dim);
+        width: 26px;
+        height: 22px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+      }
+      .theme-toggle button svg {
+        width: 13px;
+        height: 13px;
+      }
+      .theme-toggle button.active {
+        background: var(--island);
+        color: var(--text);
+      }
 
-  .value {
-    font-size: 36px;
-    font-weight: 700;
-    text-align: center;
-    margin: 4px 0 14px;
-    letter-spacing: -0.5px;
-    font-variant-numeric: tabular-nums;
-  }
-  .value span { color: var(--accent); }
+      .value {
+        font-size: 36px;
+        font-weight: 700;
+        text-align: center;
+        margin: 4px 0 14px;
+        letter-spacing: -0.5px;
+        font-variant-numeric: tabular-nums;
+      }
+      .value span {
+        color: var(--accent);
+      }
 
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--track);
-    outline: none;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--thumb);
-    border: 2px solid var(--accent);
-    cursor: pointer;
-    transition: transform 0.12s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--track);
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--thumb);
+        border: 2px solid var(--accent);
+        cursor: pointer;
+        transition: transform 0.12s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      input[type="range"]::-webkit-slider-thumb:active {
+        transform: scale(1.2);
+      }
 
-  .presets {
-    display: flex;
-    gap: 6px;
-    margin-top: 14px;
-  }
-  .presets button {
-    flex: 1;
-    padding: 8px 0;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text);
-    background: var(--btn);
-    border: 1px solid var(--island-border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.13s ease;
-  }
-  .presets button:hover { background: var(--btn-hover); }
-  .presets button.active {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+      .presets {
+        display: flex;
+        gap: 6px;
+        margin-top: 14px;
+      }
+      .presets button {
+        flex: 1;
+        padding: 8px 0;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text);
+        background: var(--btn);
+        border: 1px solid var(--island-border);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.13s ease;
+      }
+      .presets button:hover {
+        background: var(--btn-hover);
+      }
+      .presets button.active {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
 
-  .hint {
-    font-size: 10.5px;
-    line-height: 1.5;
-    color: var(--text-dim);
-    margin-top: 14px;
-    text-align: center;
-  }
+      .hint {
+        font-size: 10.5px;
+        line-height: 1.5;
+        color: var(--text-dim);
+        margin-top: 14px;
+        text-align: center;
+      }
 
-  .footer {
-    margin-top: 12px;
-    text-align: center;
-  }
-  .footer a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-dim);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: all 0.13s ease;
-  }
-  .footer a:hover { color: var(--text); background: var(--btn); }
-  .footer svg { width: 13px; height: 13px; fill: currentColor; }
-</style>
-</head>
-<body data-theme="darcula">
-  <div class="island">
-    <div class="topbar">
-      <div class="title">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-        </svg>
-        Volume Booster
+      .footer {
+        margin-top: 12px;
+        text-align: center;
+      }
+      .footer a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-dim);
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        transition: all 0.13s ease;
+      }
+      .footer a:hover {
+        color: var(--text);
+        background: var(--btn);
+      }
+      .footer svg {
+        width: 13px;
+        height: 13px;
+        fill: currentColor;
+      }
+    </style>
+  </head>
+  <body data-theme="darcula">
+    <div class="island">
+      <div class="topbar">
+        <div class="title">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          Volume Booster
+        </div>
+        <div class="theme-toggle">
+          <button id="darkBtn" title="Islands Darcula">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <button id="lightBtn" title="Islands Light">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+        </div>
       </div>
-      <div class="theme-toggle">
-        <button id="darkBtn" title="Islands Darcula">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        <button id="lightBtn" title="Islands Light">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </button>
+
+      <div class="value"><span id="value">100</span>%</div>
+      <input type="range" id="slider" min="0" max="600" value="100" step="10" />
+
+      <div class="presets">
+        <button data-v="100">100%</button>
+        <button data-v="200">200%</button>
+        <button data-v="400">400%</button>
+        <button data-v="600">600%</button>
+      </div>
+
+      <div class="hint">
+        If audio distorts, lower the boost. Reload the tab if a video was
+        already playing.
+      </div>
+
+      <div class="footer">
+        <a
+          href="https://github.com/bluram/volume-booster"
+          target="_blank"
+          rel="noopener">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.41 7.86 10.94.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.53 11.53 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z" />
+          </svg>
+          Star on GitHub
+        </a>
       </div>
     </div>
-
-    <div class="value"><span id="value">100</span>%</div>
-    <input type="range" id="slider" min="0" max="600" value="100" step="10">
-
-    <div class="presets">
-      <button data-v="100">100%</button>
-      <button data-v="200">200%</button>
-      <button data-v="400">400%</button>
-      <button data-v="600">600%</button>
-    </div>
-
-    <div class="hint">If audio distorts, lower the boost. Reload the tab if a video was already playing.</div>
-
-    <div class="footer">
-      <!-- Replace the href below with your GitHub repo link -->
-      <a href="https://github.com/YOUR_USERNAME/volume-booster" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.41 7.86 10.94.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.53 11.53 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
-        Star on GitHub
-      </a>
-    </div>
-  </div>
-  <script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>
